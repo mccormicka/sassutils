@@ -1,0 +1,42 @@
+@import "compass/utilities/sprites";         // Include compass sprite helpers
+@import "compass/css3/background-size";      // Include helper to calc background size
+
+@mixin retina-sprite($name, $sprites, $retinaSprites, $pad: 0) {  
+  
+  @include sprite-dimensions($sprites, $name);
+  background-image: sprite-url($sprites);
+  background-position: sprite-position($sprites, $name, -$pad, -$pad);
+  background-repeat: no-repeat;
+
+  @each $selector in $sprite-selectors {
+    @if sprite_has_selector($sprites, $name, $selector) {
+      &:#{$selector}, &.#{$name}_#{$selector}, &.#{$name}-#{$selector} {
+          background-position: sprite-position($sprites, #{$name}_#{$selector}, -$pad, -$pad);      
+      }
+    }
+  }
+  
+  @if $pad > 0 {
+    padding: $pad;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5) {
+    & {
+        $pos: sprite-position($retinaSprites, $name, -$pad * 2, -$pad * 2);
+        background-image: sprite-url($retinaSprites);
+        background-position: nth($pos, 1) nth($pos, 2) / 2;
+        @include background-size(ceil(image-width(sprite-path($retinaSprites)) / 2) auto);
+        
+        @each $selector in $sprite-selectors {
+          @if sprite_has_selector($sprites, $name, $selector) {
+            &:#{$selector}, &.#{$name}_#{$selector}, &.#{$name}-#{$selector} {
+                background-position: sprite-position($sprites, #{$name}_#{$selector}, -$pad, -$pad);      
+            }
+          }
+        }
+    }
+    @if $pad > 0 {
+      padding: $pad * 2;
+    }
+  }
+}

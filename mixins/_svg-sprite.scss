@@ -1,0 +1,33 @@
+@mixin svg-image($name, $sprites, $svgpath){
+
+	// @include sprite-dimensions($sprites, $name);
+	height:100%;
+	width:100%;
+	max-width:sprite-width($sprites, $name);
+	max-height:sprite-height($sprites, $name);
+	background-repeat: no-repeat;
+	
+	&.svg{
+		background-image: inline-image('#{$svgpath}/#{$name}.svg');
+		//Percentage will stretch to the width and auto the height
+		// @if($use-percentage){
+			background-size:100% 100%;
+		// }@else{
+		// 	background-size: sprite-width($sprites, $name) sprite-height($sprites, $name);	
+		// }
+	}
+	&.no-svg,
+	&.no-js{
+		background-image: sprite-url($sprites);
+		background-position: sprite-position($sprites, $name, 0, 0);
+		height:sprite-height($sprites, $name);
+		width:sprite-width($sprites, $name);
+	}
+	// @each $selector in $sprite-selectors {
+	//   	@if sprite_has_selector($sprites, $name, $selector) {
+	//       &:#{$selector}, &.#{$name}_#{$selector}, &.#{$name}-#{$selector} {
+	//           background-position: sprite-position($sprites, #{$name}_#{$selector}, 0, 0);      
+	//     }
+	// }
+  // }
+}

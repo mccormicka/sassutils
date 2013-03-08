@@ -1,0 +1,16 @@
+/**
+ * Converts pixel value to em value.
+ * Base defaults to foundation baseFontSize.
+ */
+@function pxToEm($pxval, $base: 16px) {
+  @return #{$pxval / $base}em;
+}		
+
+/**
+ * Rems are root em's so that calculations are
+ * made related to the root font size. 
+ * Unfortunately they are not supported on ios currently
+ */
+// @function pxToEm($pxval, $base: 16px) {
+//   @return #{$pxval / $base}rem;
+// }

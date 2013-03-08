@@ -1,0 +1,65 @@
+@import "./mixins/grid";
+@import "./functions/pxtoem";
+
+// $mobile: 320px !default;
+$smallTabletMinSize: pxToEm(400px) !default;
+$tabletMinSize: pxToEm(600px) !default;
+$desktopMinSize: pxToEm(800px) !default;
+
+$mobileGridMaxWidth:pxToEm(1100px) !default;
+$tabletGridMaxWidth:pxToEm(1100px) !default;
+$desktopGridMaxWidth:pxToEm(1100px) !default;
+
+//Columns
+$mobileMaxColumns:12 !default;
+$tabletMaxColumns:12 !default;
+$desktopMaxColumns:15 !default;
+
+$mobileGutter:pxToEm(5px) !default;
+$tabletGutter:pxToEm(10px) !default;
+$desktopGutter:pxToEm(10px) !default;
+
+//Start with Smallest screen first.
+@media only screen and (min-width: 0) {
+	@if( $gridDebug )
+	{
+		body{
+			background: white !important;	
+		}
+	}
+	
+	@include createGrid('mobile', $mobileMaxColumns, $mobileGridMaxWidth, $mobileGutter );
+}
+
+//Next screen size.
+@media only screen and (min-width: $smallTabletMinSize) {
+ 	@if( $gridDebug )
+	{
+		body{
+			background: orange !important;	
+		}
+	}
+ 	@include createGrid('small-tablet', $tabletMaxColumns, $tabletGridMaxWidth, $tabletGutter);
+}
+
+//Next screen size.
+@media only screen and (min-width: $smallTabletMinSize) and (max-width: $tabletMinSize) {
+ 	@if( $gridDebug )
+	{
+		body{
+			background: purple !important;	
+		}
+	}
+ 	@include createGrid('tablet', $tabletMaxColumns, $tabletGridMaxWidth, $tabletGutter);
+}
+
+//largest screensize.
+@media only screen and (min-width: $desktopMinSize) {
+	@if( $gridDebug )
+	{
+		body{
+			background: yellow !important;	
+		}
+	}
+	@include createGrid('desktop', $desktopMaxColumns, $desktopGridMaxWidth, $desktopGutter);
+}

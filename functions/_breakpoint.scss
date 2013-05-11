@@ -7,7 +7,7 @@
 	} @else if $media == small-tablet {
 	  	@media only screen and (min-width: $smallTabletMinSize) and (max-width: $tabletMinSize) { @content; }
 	} @else if $media == tablet {
-		@media only screen and (min-width: $tabletMinSize) and (max-width: $desktopMinSize) { @content }
+		@media only screen and (min-width: $tabletMinSize) and (max-width: $desktopMinSize) { @content; }
 	}
 	@else if $media == desktop {
 		@media only screen and (min-width: $desktopMinSize) { @content; }		

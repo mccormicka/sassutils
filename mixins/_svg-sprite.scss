@@ -1,3 +1,4 @@
+//http://petercollingridge.appspot.com/svg_optimiser to optimize
 @mixin svg-image($name, $sprites, $svgpath){
 
 	// @include sprite-dimensions($sprites, $name);
@@ -5,19 +6,20 @@
 	width:100%;
 	max-width:sprite-width($sprites, $name);
 	max-height:sprite-height($sprites, $name);
+	min-height:sprite-height($sprites, $name);
 	background-repeat: no-repeat;
 	
-	&.svg{
+	.svg &{
 		background-image: inline-image('#{$svgpath}/#{$name}.svg');
 		//Percentage will stretch to the width and auto the height
 		// @if($use-percentage){
-			background-size:100% 100%;
+			background-size:100% auto;
 		// }@else{
 		// 	background-size: sprite-width($sprites, $name) sprite-height($sprites, $name);	
 		// }
 	}
-	&.no-svg,
-	&.no-js{
+	.no-svg &,
+	.no-js &{
 		background-image: sprite-url($sprites);
 		background-position: sprite-position($sprites, $name, 0, 0);
 		height:sprite-height($sprites, $name);

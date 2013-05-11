@@ -43,7 +43,7 @@ $desktopGutter:pxToEm(10px) !default;
 }
 
 //Next screen size.
-@media only screen and (min-width: $smallTabletMinSize) and (max-width: $tabletMinSize) {
+@media only screen and (min-width: $tabletMinSize) {
  	@if( $gridDebug )
 	{
 		body{

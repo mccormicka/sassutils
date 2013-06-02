@@ -46,6 +46,9 @@
 
 @mixin createGrid($identifier, $maxColumns, $maxWidth, $gutter)
 {
+    .#{$identifier}-hidden{
+        display:none;
+    }
 	.#{$identifier}-grid{
 		max-width: $maxWidth;
 		margin-left: auto;
